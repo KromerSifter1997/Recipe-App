@@ -1,7 +1,7 @@
 package com.zybooks.studyhelper.viewmodel;
 
 import android.app.Application;
-import com.zybooks.studyhelper.model.Question;
+import com.zybooks.studyhelper.model.Recipe;
 import com.zybooks.studyhelper.repo.StudyRepository;
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class QuestionListViewModel {
         studyRepo = StudyRepository.getInstance(application.getApplicationContext());
     }
 
-    public List<Question> getQuestions(long subjectId) {
+    public List<Recipe> getQuestions(long subjectId) {
         return studyRepo.getQuestions(subjectId);
     }
 }

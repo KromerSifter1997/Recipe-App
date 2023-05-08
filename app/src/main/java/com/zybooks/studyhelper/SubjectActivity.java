@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -26,13 +26,13 @@ public class SubjectActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subject);
+        setContentView(R.layout.activity_recipe);
 
         mSubjectListViewModel = new SubjectListViewModel(getApplication());
 
         mSubjectColors = getResources().getIntArray(R.array.subjectColors);
 
-        findViewById(R.id.add_subject_button).setOnClickListener(view -> addSubjectClick());
+//        findViewById(R.id.add_subject_button).setOnClickListener(view -> addSubjectClick());
 
         // Create 2 grid layout columns
         mRecyclerView = findViewById(R.id.subject_recycler_view);
@@ -49,16 +49,18 @@ public class SubjectActivity extends AppCompatActivity
         mRecyclerView.setAdapter(mSubjectAdapter);
     }
 
-    @Override
-    public void onSubjectEntered(String subjectText) {
-        if (subjectText.length() > 0) {
-            Subject subject = new Subject(subjectText);
-            mSubjectListViewModel.addSubject(subject);
-            updateUI(mSubjectListViewModel.getSubjects());
+    //going to reuse this to instead let the player know when a recipe is added to favorites
 
-            Toast.makeText(this, "Added " + subjectText, Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    public void onSubjectEntered(String subjectText) {
+//        if (subjectText.length() > 0) {
+//            Subject subject = new Subject(subjectText);
+//
+//            updateUI(mSubjectListViewModel.getSubjects());
+//
+//            Toast.makeText(this, "Added " + subjectText + "to favorites", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     private void addSubjectClick() {
         SubjectDialogFragment dialog = new SubjectDialogFragment();

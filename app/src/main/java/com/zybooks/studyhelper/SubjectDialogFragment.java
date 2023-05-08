@@ -13,7 +13,7 @@ import androidx.fragment.app.DialogFragment;
 public class SubjectDialogFragment extends DialogFragment {
 
     public interface OnSubjectEnteredListener {
-        void onSubjectEntered(String subjectText);
+//        void onSubjectEntered(String subjectText);
     }
 
     private OnSubjectEnteredListener mListener;
@@ -25,14 +25,16 @@ public class SubjectDialogFragment extends DialogFragment {
         subjectEditText.setInputType(InputType.TYPE_CLASS_TEXT);
         subjectEditText.setMaxLines(1);
 
+        //might be useful for adding to a favorites list
+
         return new AlertDialog.Builder(requireActivity())
-                .setTitle(R.string.subject)
-                .setView(subjectEditText)
-                .setPositiveButton(R.string.create, (dialog, whichButton) -> {
-                    // Notify listener
-                    String subject = subjectEditText.getText().toString();
-                    mListener.onSubjectEntered(subject.trim());
-                })
+//                .setTitle(R.string.subject)
+//                .setView(subjectEditText)
+//                .setPositiveButton(R.string.create, (dialog, whichButton) -> {
+//                    // Notify listener
+//                    String subject = subjectEditText.getText().toString();
+////                    mListener.onSubjectEntered(subject.trim());
+//                })
                 .setNegativeButton(R.string.cancel, null)
                 .create();
     }

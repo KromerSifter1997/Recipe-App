@@ -17,7 +17,4 @@ public class SubjectListViewModel {
         return studyRepo.getSubjects();
     }
 
-    public void addSubject(Subject subject) {
-        studyRepo.addSubject(subject);
-    }
 }

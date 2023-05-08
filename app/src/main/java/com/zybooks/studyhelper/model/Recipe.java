@@ -1,6 +1,6 @@
 package com.zybooks.studyhelper.model;
 
-public class Question {
+public class Recipe {
 
     private long mId;
     private String mText;
