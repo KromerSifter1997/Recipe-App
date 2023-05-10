@@ -20,6 +20,7 @@ public class QuestionActivity extends AppCompatActivity {
     public static final String EXTRA_SUBJECT_ID = "com.zybooks.studyhelper.subject_id";
     public static final String EXTRA_SUBJECT_TEXT  = "com.zybooks.studyhelper.subject_text";
 
+
     private QuestionListViewModel mQuestionListViewModel;
     private Food mFood;
     private List<Recipe> mRecipeList;
@@ -107,6 +108,16 @@ public class QuestionActivity extends AppCompatActivity {
 
     private void addToFavorites() {
         //This is where the favorites list has a recipe added
+//        call mFav to check if its false to make it true, then call that into a method for saving to favorites in a file to save between
+//        if( = false){
+//            mFav = true;
+//        }
+        // if a recipe is alerady favorited it is unfavorited and the method of removing the object from the saved favorites file is called
+//        else if( mFav = true)
+//        {
+//            mFav = false;
+//        }
+
     }
 
 
