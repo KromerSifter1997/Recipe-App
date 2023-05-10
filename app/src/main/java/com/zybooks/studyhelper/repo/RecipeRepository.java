@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class StudyRepository {
+public class RecipeRepository {
 
-    private static StudyRepository mStudyRepo;
+    private static RecipeRepository mStudyRepo;
     private final List<Subject> mSubjectList;
     private final HashMap<Long, List<Recipe>> mQuestionMap;
 
-    public static StudyRepository getInstance(Context context) {
+    public static RecipeRepository getInstance(Context context) {
         if (mStudyRepo == null) {
-            mStudyRepo = new StudyRepository(context);
+            mStudyRepo = new RecipeRepository(context);
         }
         return mStudyRepo;
     }
 
-    private StudyRepository(Context context) {
+    private RecipeRepository(Context context) {
 
         mSubjectList = new ArrayList<>();
         mQuestionMap = new HashMap<>();
