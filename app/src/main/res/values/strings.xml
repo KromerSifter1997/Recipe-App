@@ -6,7 +6,8 @@
     <string name="InstructionLabel">Instructions</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
-    <string name="add">Favorite</string>
+    <string name="favorite">Favorite</string>
     <string name="cancel">Cancel</string>
-    <string name="question_number">(Step %2$d of %3$d)</string>
+    <string name="favoriteRecipes">Open Favorite</string>
+    <string name="stepNumber">(Step %2$d of %3$d)</string>
 </resources>

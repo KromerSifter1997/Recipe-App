@@ -11,7 +11,7 @@ public class RecipeRepository {
 
     private static RecipeRepository mStudyRepo;
     private final List<Subject> mSubjectList;
-    private final HashMap<Long, List<Recipe>> mQuestionMap;
+    private final HashMap<Long, List<Recipe>> mRecipeList;
 
     public static RecipeRepository getInstance(Context context) {
         if (mStudyRepo == null) {
@@ -23,65 +23,119 @@ public class RecipeRepository {
     private RecipeRepository(Context context) {
 
         mSubjectList = new ArrayList<>();
-        mQuestionMap = new HashMap<>();
+        mRecipeList = new HashMap<>();
 
         addStarterData();
     }
 
     private void addStarterData() {
-        // Add a few subjects and questions
+//        Steps for Spaghetti
+        // start subject to create new recipe
         Subject subject = new Subject("SPAGHETTI");
         subject.setId(1);
         addSubject(subject);
 
-//        Steps for Spaghetti
+        //recipe new recipe creates individual steps
         Recipe recipe = new Recipe();
         recipe.setId(1);
         recipe.setText("Sauce");
-        recipe.setAnswer("4 Roma tomatoes \n\n 1/2 clove of garlic \n\n 1 tablespoon of oregano");
+        recipe.setIngredients("4 Roma tomatoes \n\n 1/2 clove of garlic \n\n 1 tablespoon of oregano");
         recipe.setInstructions("slice the skin of the tomato in a \"X\" pattern \n\n boil them for 1 minute \n\n peel then dice tomato flesh\n\n Sautee with seasonings for 3 minutes ");
         recipe.setSubjectId(1);
-        addQuestion(recipe);
+        addStep(recipe);
 
         recipe = new Recipe();
         recipe.setId(2);
         recipe.setText("Pasta");
-        recipe.setAnswer("2 cups of water\n\nSalt\n\n1/2 - 1 pound dry spaghetti");
+        recipe.setIngredients("2 cups of water\n\nSalt\n\n1/2 - 1 pound dry spaghetti");
         recipe.setInstructions("pour 2 cups of water into large pot\n\n Throw a pinch of salt into water\n\n Heat water until boil\n\n Place pasta into water, boil for 4 minutes or until Al Dente \n\n Serve and enjoy!");
         recipe.setSubjectId(1);
-        addQuestion(recipe);
+        addStep(recipe);
 
         recipe = new Recipe();
         recipe.setId(2);
         recipe.setText("Serving");
-        recipe.setAnswer("Quarter Oz tomato sauce\n\nHalf pound spaghetti\n\nSalt & pepper (if desired)");
+        recipe.setIngredients("Quarter Oz tomato sauce\n\nHalf pound spaghetti\n\nSalt & pepper (if desired)");
         recipe.setInstructions("Place pasta into bowl or place\n\nPour sauce over pasta\n\nAdd salt and pepper if desired");
         recipe.setSubjectId(1);
-        addQuestion(recipe);
+        addStep(recipe);
 
 
 // ///////////////////////////////////////////////////////////////
 
-        subject = new Subject("History");
-        subject.setId(2);
+//        Steps for cookies
+        // only need to do Subject subject = new subject() once
+        //after just do subject = new subject()
+        subject = new Subject("COOKIES");
+        subject.setId(1);
         addSubject(subject);
+
+        //recipe new recipe creates individual steps
+        recipe = new Recipe();
+        recipe.setId(1);
+        recipe.setText("Sauce");
+        recipe.setIngredients("4 Roma tomatoes \n\n 1/2 clove of garlic \n\n 1 tablespoon of oregano");
+        recipe.setInstructions("slice the skin of the tomato in a \"X\" pattern \n\n boil them for 1 minute \n\n peel then dice tomato flesh\n\n Sautee with seasonings for 3 minutes ");
+        recipe.setSubjectId(1);
+        addStep(recipe);
 
         recipe = new Recipe();
-        recipe.setId(3);
-        recipe.setText("On what date was the U.S. Declaration of Independence adopted?");
-        recipe.setAnswer("July 4, 1776");
-        recipe.setSubjectId(2);
-        addQuestion(recipe);
+        recipe.setId(2);
+        recipe.setText("Pasta");
+        recipe.setIngredients("2 cups of water\n\nSalt\n\n1/2 - 1 pound dry spaghetti");
+        recipe.setInstructions("pour 2 cups of water into large pot\n\n Throw a pinch of salt into water\n\n Heat water until boil\n\n Place pasta into water, boil for 4 minutes or until Al Dente \n\n Serve and enjoy!");
+        recipe.setSubjectId(1);
+        addStep(recipe);
 
-        subject = new Subject("Computing");
-        subject.setId(3);
+        recipe = new Recipe();
+        recipe.setId(2);
+        recipe.setText("Serving");
+        recipe.setIngredients("Quarter Oz tomato sauce\n\nHalf pound spaghetti\n\nSalt & pepper (if desired)");
+        recipe.setInstructions("Place pasta into bowl or place\n\nPour sauce over pasta\n\nAdd salt and pepper if desired");
+        recipe.setSubjectId(1);
+        addStep(recipe);
+
+
+// ///////////////////////////////////////////////////////////////
+
+        //        Steps for pancakes
+        subject = new Subject("PANCAKES");
+        subject.setId(1);
         addSubject(subject);
+
+        //recipe new recipe creates individual steps
+        recipe = new Recipe();
+        recipe.setId(1);
+        recipe.setText("Sauce");
+        recipe.setIngredients("4 Roma tomatoes \n\n 1/2 clove of garlic \n\n 1 tablespoon of oregano");
+        recipe.setInstructions("slice the skin of the tomato in a \"X\" pattern \n\n boil them for 1 minute \n\n peel then dice tomato flesh\n\n Sautee with seasonings for 3 minutes ");
+        recipe.setSubjectId(1);
+        addStep(recipe);
+
+        recipe = new Recipe();
+        recipe.setId(2);
+        recipe.setText("Pasta");
+        recipe.setIngredients("2 cups of water\n\nSalt\n\n1/2 - 1 pound dry spaghetti");
+        recipe.setInstructions("pour 2 cups of water into large pot\n\n Throw a pinch of salt into water\n\n Heat water until boil\n\n Place pasta into water, boil for 4 minutes or until Al Dente \n\n Serve and enjoy!");
+        recipe.setSubjectId(1);
+        addStep(recipe);
+
+        recipe = new Recipe();
+        recipe.setId(2);
+        recipe.setText("Serving");
+        recipe.setIngredients("Quarter Oz tomato sauce\n\nHalf pound spaghetti\n\nSalt & pepper (if desired)");
+        recipe.setInstructions("Place pasta into bowl or place\n\nPour sauce over pasta\n\nAdd salt and pepper if desired");
+        recipe.setSubjectId(1);
+        addStep(recipe);
+
+
+// ///////////////////////////////////////////////////////////////
     }
 
     public void addSubject(Subject subject) {
         mSubjectList.add(subject);
         List<Recipe> recipeList = new ArrayList<>();
-        mQuestionMap.put(subject.getId(), recipeList);
+        mRecipeList.put(subject.getId(), recipeList);
     }
 
     public Subject getSubject(long subjectId) {
@@ -98,14 +152,14 @@ public class RecipeRepository {
         return mSubjectList;
     }
 
-    public void addQuestion(Recipe recipe) {
-        List<Recipe> recipeList = mQuestionMap.get(recipe.getSubjectId());
+    public void addStep(Recipe recipe) {
+        List<Recipe> recipeList = mRecipeList.get(recipe.getRecipeId());
         if (recipeList != null) {
             recipeList.add(recipe);
         }
     }
 
-    public List<Recipe> getQuestions(long subjectId) {
-        return mQuestionMap.get(subjectId);
+    public List<Recipe> getStep(long subjectId) {
+        return mRecipeList.get(subjectId);
     }
 }

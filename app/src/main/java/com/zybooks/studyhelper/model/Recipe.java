@@ -4,11 +4,13 @@ public class Recipe {
 
     private long mId;
     private String mText;
-    private String mAnswer;
+    private String mIngredients;
 
     private String mInstructions;
-    private long mSubjectId;
+    private long mRecipeId;
 
+    
+    //id is refering to the listed order of the subjects
     public void setId(long id) {
         mId = id;
     }
@@ -17,6 +19,8 @@ public class Recipe {
         return mId;
     }
 
+    
+    //Text is the title
     public String getText() {
         return mText;
     }
@@ -25,12 +29,14 @@ public class Recipe {
         mText = text;
     }
 
-    public String getAnswer() {
-        return mAnswer;
+    
+    //
+    public String getIngredients() {
+        return mIngredients;
     }
 
-    public void setAnswer(String answer) {
-        mAnswer = answer;
+    public void setIngredients(String ingredientList) {
+        mIngredients = ingredientList;
     }
 
     public String getInstructions() {
@@ -40,11 +46,11 @@ public class Recipe {
     public void setInstructions(String instructions) {mInstructions = instructions;}
 
 
-    public long getSubjectId() {
-        return mSubjectId;
+    public long getRecipeId() {
+        return mRecipeId;
     }
 
-    public void setSubjectId(long subjectId) {
-        mSubjectId = subjectId;
+    public void setSubjectId(long recipeId) {
+        mRecipeId = recipeId;
     }
 }

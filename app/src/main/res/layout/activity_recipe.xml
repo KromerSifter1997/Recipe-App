@@ -19,9 +19,9 @@
 <!--        android:id="@+id/add_subject_button"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
-<!--        android:contentDescription="@string/add_subject"-->
+<!--        android:contentDescription="@string/favoriteRecipes"-->
 <!--        android:layout_gravity="end|bottom"-->
-<!--        android:src="@drawable/add"-->
+<!--        android:src="@drawable/favorites"-->
 <!--        android:layout_margin="16dp" />-->
 
 </FrameLayout>

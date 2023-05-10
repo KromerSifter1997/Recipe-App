@@ -15,7 +15,7 @@ public class QuestionListViewModel {
     }
 
     public List<Recipe> getQuestions(long subjectId) {
-        return studyRepo.getQuestions(subjectId);
+        return studyRepo.getStep(subjectId);
     }
 }
 

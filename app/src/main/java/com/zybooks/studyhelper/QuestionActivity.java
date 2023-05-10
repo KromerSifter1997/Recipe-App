@@ -100,7 +100,7 @@ public class QuestionActivity extends AppCompatActivity {
     private void updateAppBarTitle() {
 
         // displays the steps of the recipe
-        String title = getResources().getString(R.string.question_number,
+        String title = getResources().getString(R.string.stepNumber,
                 mSubject.getText(), mCurrentQuestionIndex + 1,  mRecipeList.size());
         setTitle(title);
     }
@@ -126,7 +126,7 @@ public class QuestionActivity extends AppCompatActivity {
 
             Recipe recipe = mRecipeList.get(mCurrentQuestionIndex);
             mQuestionTextView.setText(recipe.getText());
-            mAnswerTextView.setText(recipe.getAnswer());
+            mAnswerTextView.setText(recipe.getIngredients());
             mInstructionTextView.setText(recipe.getInstructions());
         }
         else {
