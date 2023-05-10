@@ -86,7 +86,7 @@ public class QuestionActivity extends AppCompatActivity {
             showRecipe(mCurrentQuestionIndex + 1);
             return true;
         }
-        else if (item.getItemId() == R.id.add) {
+        else if (item.getItemId() == R.id.Favoriter) {
             addToFavorites();
             return true;
         }
