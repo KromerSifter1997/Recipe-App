@@ -1,28 +1,30 @@
 package com.zybooks.studyhelper.repo;
 
 import android.content.Context;
+
+import com.zybooks.studyhelper.model.Food;
 import com.zybooks.studyhelper.model.Recipe;
-import com.zybooks.studyhelper.model.Subject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class RecipeRepository {
 
-    private static RecipeRepository mStudyRepo;
-    private final List<Subject> mSubjectList;
+    private static RecipeRepository mRecipeRepo;
+    private final List<Food> mFoodList;
     private final HashMap<Long, List<Recipe>> mRecipeList;
 
     public static RecipeRepository getInstance(Context context) {
-        if (mStudyRepo == null) {
-            mStudyRepo = new RecipeRepository(context);
+        if (mRecipeRepo == null) {
+            mRecipeRepo = new RecipeRepository(context);
         }
-        return mStudyRepo;
+        return mRecipeRepo;
     }
 
     private RecipeRepository(Context context) {
 
-        mSubjectList = new ArrayList<>();
+        mFoodList = new ArrayList<>();
         mRecipeList = new HashMap<>();
 
         addStarterData();
@@ -31,9 +33,9 @@ public class RecipeRepository {
     private void addStarterData() {
 //        Steps for Spaghetti
         // start subject to create new recipe
-        Subject subject = new Subject("SPAGHETTI");
-        subject.setId(1);
-        addSubject(subject);
+        Food food = new Food("SPAGHETTI");
+        food.setId(1);
+        addSubject(food);
 
         //recipe new recipe creates individual steps
         Recipe recipe = new Recipe();
@@ -66,9 +68,9 @@ public class RecipeRepository {
 //        Steps for cookies
         // only need to do Subject subject = new subject() once
         //after just do subject = new subject()
-        subject = new Subject("COOKIES");
-        subject.setId(1);
-        addSubject(subject);
+        food = new Food("COOKIES");
+        food.setId(1);
+        addSubject(food);
 
         //recipe new recipe creates individual steps
         recipe = new Recipe();
@@ -99,9 +101,9 @@ public class RecipeRepository {
 // ///////////////////////////////////////////////////////////////
 
         //        Steps for pancakes
-        subject = new Subject("PANCAKES");
-        subject.setId(1);
-        addSubject(subject);
+        food = new Food("PANCAKES");
+        food.setId(1);
+        addSubject(food);
 
         //recipe new recipe creates individual steps
         recipe = new Recipe();
@@ -132,24 +134,24 @@ public class RecipeRepository {
 // ///////////////////////////////////////////////////////////////
     }
 
-    public void addSubject(Subject subject) {
-        mSubjectList.add(subject);
+    public void addSubject(Food food) {
+        mFoodList.add(food);
         List<Recipe> recipeList = new ArrayList<>();
-        mRecipeList.put(subject.getId(), recipeList);
+        mRecipeList.put(food.getId(), recipeList);
     }
 
-    public Subject getSubject(long subjectId) {
-        for (Subject subject: mSubjectList) {
-            if (subject.getId() == subjectId) {
-                return subject;
+    public Food getSubject(long subjectId) {
+        for (Food food : mFoodList) {
+            if (food.getId() == subjectId) {
+                return food;
             }
         }
 
         return null;
     }
 
-    public List<Subject> getSubjects() {
-        return mSubjectList;
+    public List<Food> getSubjects() {
+        return mFoodList;
     }
 
     public void addStep(Recipe recipe) {

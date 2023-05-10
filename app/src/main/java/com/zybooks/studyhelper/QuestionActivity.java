@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.zybooks.studyhelper.model.Recipe;
-import com.zybooks.studyhelper.model.Subject;
+import com.zybooks.studyhelper.model.Food;
 import com.zybooks.studyhelper.viewmodel.QuestionListViewModel;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class QuestionActivity extends AppCompatActivity {
     public static final String EXTRA_SUBJECT_TEXT  = "com.zybooks.studyhelper.subject_text";
 
     private QuestionListViewModel mQuestionListViewModel;
-    private Subject mSubject;
+    private Food mFood;
     private List<Recipe> mRecipeList;
     private TextView mAnswerLabelTextView;
     private TextView mAnswerTextView;
@@ -51,8 +51,8 @@ public class QuestionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         long subjectId = intent.getLongExtra(EXTRA_SUBJECT_ID, 0);
         String subjectText = intent.getStringExtra(EXTRA_SUBJECT_TEXT);
-        mSubject = new Subject(subjectText);
-        mSubject.setId(subjectId);
+        mFood = new Food(subjectText);
+        mFood.setId(subjectId);
 
         // Get all questions for this subject
         mQuestionListViewModel = new QuestionListViewModel(getApplication());
@@ -101,7 +101,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         // displays the steps of the recipe
         String title = getResources().getString(R.string.stepNumber,
-                mSubject.getText(), mCurrentQuestionIndex + 1,  mRecipeList.size());
+                mFood.getText(), mCurrentQuestionIndex + 1,  mRecipeList.size());
         setTitle(title);
     }
 

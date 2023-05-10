@@ -6,6 +6,7 @@ public class Recipe {
     private String mText;
     private String mIngredients;
 
+    private boolean mFav;
     private String mInstructions;
     private long mRecipeId;
 
