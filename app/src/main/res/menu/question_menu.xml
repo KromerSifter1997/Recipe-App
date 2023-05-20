@@ -12,15 +12,7 @@
         android:title="@string/next"
         app:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/add"
-        android:title="@string/add"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/edit"
-        android:title="@string/edit"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/delete"
-        android:title="@string/delete"
+    <item android:id="@+id/Favoriter"
+        android:title="@string/favorite"
         app:showAsAction="never"/>
 </menu>

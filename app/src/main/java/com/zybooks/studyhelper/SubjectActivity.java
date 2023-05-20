@@ -6,12 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.zybooks.studyhelper.model.Subject;
+
+import com.zybooks.studyhelper.model.Food;
 import com.zybooks.studyhelper.viewmodel.SubjectListViewModel;
 import java.util.List;
 
@@ -26,13 +27,13 @@ public class SubjectActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subject);
+        setContentView(R.layout.activity_recipe);
 
         mSubjectListViewModel = new SubjectListViewModel(getApplication());
 
         mSubjectColors = getResources().getIntArray(R.array.subjectColors);
 
-        findViewById(R.id.add_subject_button).setOnClickListener(view -> addSubjectClick());
+//        findViewById(R.id.add_subject_button).setOnClickListener(view -> addSubjectClick());
 
         // Create 2 grid layout columns
         mRecyclerView = findViewById(R.id.subject_recycler_view);
@@ -44,21 +45,23 @@ public class SubjectActivity extends AppCompatActivity
         updateUI(mSubjectListViewModel.getSubjects());
     }
 
-    private void updateUI(List<Subject> subjectList) {
-        mSubjectAdapter = new SubjectAdapter(subjectList);
+    private void updateUI(List<Food> foodList) {
+        mSubjectAdapter = new SubjectAdapter(foodList);
         mRecyclerView.setAdapter(mSubjectAdapter);
     }
 
-    @Override
-    public void onSubjectEntered(String subjectText) {
-        if (subjectText.length() > 0) {
-            Subject subject = new Subject(subjectText);
-            mSubjectListViewModel.addSubject(subject);
-            updateUI(mSubjectListViewModel.getSubjects());
+    //going to reuse this to instead let the player know when a recipe is added to favorites
 
-            Toast.makeText(this, "Added " + subjectText, Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    public void onSubjectEntered(String subjectText) {
+//        if (subjectText.length() > 0) {
+//            Subject subject = new Subject(subjectText);
+//
+//            updateUI(mSubjectListViewModel.getSubjects());
+//
+//            Toast.makeText(this, "Added " + subjectText + "to favorites", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     private void addSubjectClick() {
         SubjectDialogFragment dialog = new SubjectDialogFragment();
@@ -68,7 +71,7 @@ public class SubjectActivity extends AppCompatActivity
     private class SubjectHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
 
-        private Subject mSubject;
+        private Food mFood;
         private final TextView mSubjectTextView;
 
         public SubjectHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -77,12 +80,12 @@ public class SubjectActivity extends AppCompatActivity
             mSubjectTextView = itemView.findViewById(R.id.subject_text_view);
         }
 
-        public void bind(Subject subject, int position) {
-            mSubject = subject;
-            mSubjectTextView.setText(subject.getText());
+        public void bind(Food food, int position) {
+            mFood = food;
+            mSubjectTextView.setText(food.getText());
 
             // Make the background color dependent on the length of the subject string
-            int colorIndex = subject.getText().length() % mSubjectColors.length;
+            int colorIndex = food.getText().length() % mSubjectColors.length;
             mSubjectTextView.setBackgroundColor(mSubjectColors[colorIndex]);
         }
 
@@ -90,8 +93,8 @@ public class SubjectActivity extends AppCompatActivity
         public void onClick(View view) {
             // Start QuestionActivity with the selected subject
             Intent intent = new Intent(SubjectActivity.this, QuestionActivity.class);
-            intent.putExtra(QuestionActivity.EXTRA_SUBJECT_ID, mSubject.getId());
-            intent.putExtra(QuestionActivity.EXTRA_SUBJECT_TEXT, mSubject.getText());
+            intent.putExtra(QuestionActivity.EXTRA_SUBJECT_ID, mFood.getId());
+            intent.putExtra(QuestionActivity.EXTRA_SUBJECT_TEXT, mFood.getText());
 
             startActivity(intent);
         }
@@ -99,10 +102,10 @@ public class SubjectActivity extends AppCompatActivity
 
     private class SubjectAdapter extends RecyclerView.Adapter<SubjectHolder> {
 
-        private final List<Subject> mSubjectList;
+        private final List<Food> mFoodList;
 
-        public SubjectAdapter(List<Subject> subjects) {
-            mSubjectList = subjects;
+        public SubjectAdapter(List<Food> foods) {
+            mFoodList = foods;
         }
 
         @NonNull
@@ -114,12 +117,12 @@ public class SubjectActivity extends AppCompatActivity
 
         @Override
         public void onBindViewHolder(SubjectHolder holder, int position){
-            holder.bind(mSubjectList.get(position), position);
+            holder.bind(mFoodList.get(position), position);
         }
 
         @Override
         public int getItemCount() {
-            return mSubjectList.size();
+            return mFoodList.size();
         }
     }
 }

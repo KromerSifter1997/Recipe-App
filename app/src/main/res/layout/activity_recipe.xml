@@ -12,13 +12,16 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_subject_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/add_subject"
-        android:layout_gravity="end|bottom"
-        android:src="@drawable/add"
-        android:layout_margin="16dp" />
+
+<!--    will be converted into the open favorites button-->
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/add_subject_button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:contentDescription="@string/favoriteRecipes"-->
+<!--        android:layout_gravity="end|bottom"-->
+<!--        android:src="@drawable/favorites"-->
+<!--        android:layout_margin="16dp" />-->
 
 </FrameLayout>

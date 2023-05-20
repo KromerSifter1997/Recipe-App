@@ -1,23 +1,21 @@
 package com.zybooks.studyhelper.viewmodel;
 
 import android.app.Application;
-import com.zybooks.studyhelper.model.Subject;
-import com.zybooks.studyhelper.repo.StudyRepository;
+
+import com.zybooks.studyhelper.model.Food;
+import com.zybooks.studyhelper.repo.RecipeRepository;
 import java.util.List;
 
 public class SubjectListViewModel {
 
-    private StudyRepository studyRepo;
+    private RecipeRepository studyRepo;
 
     public SubjectListViewModel(Application application) {
-        studyRepo = StudyRepository.getInstance(application.getApplicationContext());
+        studyRepo = RecipeRepository.getInstance(application.getApplicationContext());
     }
 
-    public List<Subject> getSubjects() {
+    public List<Food> getSubjects() {
         return studyRepo.getSubjects();
     }
 
-    public void addSubject(Subject subject) {
-        studyRepo.addSubject(subject);
-    }
 }
