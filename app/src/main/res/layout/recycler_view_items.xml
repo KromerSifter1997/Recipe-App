@@ -7,6 +7,7 @@
     android:layout_height="150dp"
     card_view:cardCornerRadius="5dp"
     card_view:cardUseCompatPadding="true">
+<!--PUT ANYTHING YOU WANT INSIDE EACH CARD IN HERE-->
 
     <TextView
         android:id="@+id/subject_text_view"
@@ -16,5 +17,14 @@
         android:padding="10dp"
         android:layout_gravity="center"
         android:gravity="center" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cardfavoritebutton"
+        android:textOff="@string/favorite"
+        android:textOn="@string/cardUnfavoriteButton" />
+
 
 </androidx.cardview.widget.CardView>
