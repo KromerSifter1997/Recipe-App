@@ -35,7 +35,7 @@ public class RecipeRepository {
         // start subject to create new recipe
         Food food = new Food("SPAGHETTI");
         food.setId(1);
-        addSubject(food);
+        addRecipe(food);
 
         //recipe new recipe creates individual steps
         Recipe recipe = new Recipe();
@@ -70,7 +70,7 @@ public class RecipeRepository {
         //after just do subject = new subject()
         food = new Food("COOKIES");
         food.setId(1);
-        addSubject(food);
+        addRecipe(food);
 
         //recipe new recipe creates individual steps
         recipe = new Recipe();
@@ -103,7 +103,7 @@ public class RecipeRepository {
         //        Steps for pancakes
         food = new Food("PANCAKES");
         food.setId(1);
-        addSubject(food);
+        addRecipe(food);
 
         //recipe new recipe creates individual steps
         recipe = new Recipe();
@@ -134,7 +134,7 @@ public class RecipeRepository {
 // ///////////////////////////////////////////////////////////////
     }
 
-    public void addSubject(Food food) {
+    public void addRecipe(Food food) {
         mFoodList.add(food);
         List<Recipe> recipeList = new ArrayList<>();
         mRecipeList.put(food.getId(), recipeList);
@@ -155,6 +155,7 @@ public class RecipeRepository {
     }
 
     public void addStep(Recipe recipe) {
+        // this function can be applied to call upon "favorite recipe" by giving it a "favorite id" instead to call upon
         List<Recipe> recipeList = mRecipeList.get(recipe.getRecipeId());
         if (recipeList != null) {
             recipeList.add(recipe);
