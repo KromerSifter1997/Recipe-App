@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zybooks.studyhelper.SubjectActivity">
+    tools:context="com.zybooks.studyhelper.RecipeActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/subject_recycler_view"
+        android:id="@+id/recipe_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical" />
@@ -15,16 +15,16 @@
 
 <!--    TODO: convert into a button that opens favorites-->
 
+    <!--    TODO: Create button that opens search-->
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/openFavoritesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/favoriteRecipes"
         android:layout_gravity="end|bottom"
-        android:src="@drawable/favorites"
-        android:layout_margin="16dp" />
-
-<!--    TODO: Create button that opens search-->
+        android:layout_margin="16dp"
+        android:contentDescription="@string/favoriteRecipes"
+        android:src="@drawable/favorites" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/searchButton"

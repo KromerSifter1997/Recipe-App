@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-public class SubjectDialogFragment extends DialogFragment {
+public class RecipeDialogFragment extends DialogFragment {
 
     public interface OnSubjectEnteredListener {
 //        void onSubjectEntered(String subjectText);

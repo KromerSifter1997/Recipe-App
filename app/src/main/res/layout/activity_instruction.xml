@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        tools:context="com.zybooks.studyhelper.QuestionActivity">
+        tools:context="com.zybooks.studyhelper.InstructionActivity">
 
 
 
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        tools:context="com.zybooks.studyhelper.QuestionActivity">
+        tools:context="com.zybooks.studyhelper.InstructionActivity">
 
         <TextView
             android:id="@+id/question_label_text_view"

@@ -1,21 +1,40 @@
 package com.zybooks.studyhelper.repo;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.widget.ToggleButton;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.zybooks.studyhelper.R;
+import com.zybooks.studyhelper.model.Favorites;
 import com.zybooks.studyhelper.model.Food;
 import com.zybooks.studyhelper.model.Recipe;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class RecipeRepository {
+public class RecipeRepository extends AppCompatActivity {
 
     private static RecipeRepository mRecipeRepo;
     private final List<Food> mFoodList;
 
-    private final List<Food> mFavList;
+    private final List<Favorites> mFavoritesList;
     private final HashMap<Long, List<Recipe>> mRecipeList;
+
+    private boolean toggleButtonState;
+
+    //Solely exists to pull a check for the favorite star
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.recycler_view_items);
+        ToggleButton simpleToggleButton = (ToggleButton) findViewById(R.id.toggleButton); // initiate a toggle button
+        toggleButtonState = simpleToggleButton.isChecked();
+
+    }
 
     public static RecipeRepository getInstance(Context context) {
         if (mRecipeRepo == null) {
@@ -27,18 +46,37 @@ public class RecipeRepository {
     private RecipeRepository(Context context) {
 
         mFoodList = new ArrayList<>();
-        mFavList = new ArrayList<>();
+        mFavoritesList = new ArrayList<>();
         mRecipeList = new HashMap<>();
+
+
 
         addStarterData();
     }
+
+
+
 
     private void addStarterData() {
 //        Steps for Spaghetti
         // start subject to create new recipe
         Food food = new Food("SPAGHETTI");
         food.setId(1);
-        food.setFavId(0);
+
+
+
+
+        // TODO: create an if that checks whether the star has been toggled
+        //The Favorited status won't immediately update, but since it will be called again when you go into the favorites menu this isn't an issue
+
+        if(toggleButtonState == true) {
+
+            Favorites favorites = new Favorites("SPAGHETTI");
+            favorites.setFavId(1);
+
+        }
+
+
         addRecipe(food);
 
         //recipe new recipe creates individual steps
@@ -67,6 +105,7 @@ public class RecipeRepository {
         addStep(recipe);
 
 
+
 // ///////////////////////////////////////////////////////////////
 
 //        Steps for cookies
@@ -74,7 +113,12 @@ public class RecipeRepository {
         //after just do subject = new subject()
         food = new Food("COOKIES");
         food.setId(1);
-        food.setFavId(0);
+        if(toggleButtonState == true) {
+
+            Favorites favorites = new Favorites("COOKIES");
+            favorites.setFavId(1);
+
+        }
         addRecipe(food);
 
         //recipe new recipe creates individual steps
@@ -108,7 +152,12 @@ public class RecipeRepository {
         //        Steps for pancakes
         food = new Food("PANCAKES");
         food.setId(1);
-        food.setFavId(0);
+        if(toggleButtonState == true) {
+
+            Favorites favorites = new Favorites("PANCAKES");
+            favorites.setFavId(1);
+
+        }
         addRecipe(food);
 
         //recipe new recipe creates individual steps
@@ -146,6 +195,15 @@ public class RecipeRepository {
         mRecipeList.put(food.getId(), recipeList);
     }
 
+    //calls favorites, similar to how items are called normally
+    public void addFavorites(Favorites favorites) {
+        //  REMINDER: If this doesn't play nice, nest in an if statement to make it skip.
+
+        mFavoritesList.add(favorites);
+        List<Recipe> FavoritesList = new ArrayList<>();
+        mRecipeList.put(favorites.getFavId(), FavoritesList);
+    }
+
     public Food getSubject(long subjectId) {
         for (Food food : mFoodList) {
             if (food.getId() == subjectId) {
@@ -160,6 +218,10 @@ public class RecipeRepository {
         return mFoodList;
     }
 
+    public List<Favorites> getFavorites() {
+        return mFavoritesList;
+    }
+
     public void addStep(Recipe recipe) {
         // this function can be applied to call upon "favorite recipe" by giving it a "favorite id" instead to call upon
         List<Recipe> recipeList = mRecipeList.get(recipe.getRecipeId());
@@ -172,3 +234,4 @@ public class RecipeRepository {
         return mRecipeList.get(subjectId);
     }
 }
+

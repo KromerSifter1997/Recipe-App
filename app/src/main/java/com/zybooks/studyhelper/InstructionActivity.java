@@ -15,7 +15,7 @@ import com.zybooks.studyhelper.model.Food;
 import com.zybooks.studyhelper.viewmodel.QuestionListViewModel;
 import java.util.List;
 
-public class QuestionActivity extends AppCompatActivity {
+public class InstructionActivity extends AppCompatActivity {
 
     public static final String EXTRA_SUBJECT_ID = "com.zybooks.studyhelper.subject_id";
     public static final String EXTRA_SUBJECT_TEXT  = "com.zybooks.studyhelper.subject_text";

@@ -5,49 +5,73 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.zybooks.studyhelper.model.Food;
-import com.zybooks.studyhelper.viewmodel.SubjectListViewModel;
+import com.zybooks.studyhelper.viewmodel.RecipeListViewModel;
 import java.util.List;
 
-public class SubjectActivity extends AppCompatActivity
-        implements SubjectDialogFragment.OnSubjectEnteredListener {
 
-    private SubjectAdapter mSubjectAdapter;
+
+public class RecipeActivity extends AppCompatActivity
+       {
+
+    private RecipeAdapter mRecipeAdapter;
     private RecyclerView mRecyclerView;
     private int[] mSubjectColors;
-    private SubjectListViewModel mSubjectListViewModel;
+    private RecipeListViewModel mRecipeListViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        mSubjectListViewModel = new SubjectListViewModel(getApplication());
+
+
+        mRecipeListViewModel = new RecipeListViewModel(getApplication());
 
         mSubjectColors = getResources().getIntArray(R.array.subjectColors);
 
 //        findViewById(R.id.add_subject_button).setOnClickListener(view -> addSubjectClick());
 
         // Create 2 grid layout columns
-        mRecyclerView = findViewById(R.id.subject_recycler_view);
+        mRecyclerView = findViewById(R.id.recipe_recycler_view);
         RecyclerView.LayoutManager gridLayoutManager =
                 new GridLayoutManager(getApplicationContext(), 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
+
+
         // Show the subjects
-        updateUI(mSubjectListViewModel.getSubjects());
+        updateUI(mRecipeListViewModel.getRecipes());
+
+        //due to the unique FAB button, had to implement a slightly unusual form of click listener
+        FloatingActionButton fBtn = (FloatingActionButton) findViewById(R.id.openFavoritesButton);
+        fBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(RecipeActivity.this, FavoriteActivity.class));
+            }
+        });
+
+
+
+
     }
 
     private void updateUI(List<Food> foodList) {
-        mSubjectAdapter = new SubjectAdapter(foodList);
-        mRecyclerView.setAdapter(mSubjectAdapter);
+        mRecipeAdapter = new RecipeAdapter(foodList);
+        mRecyclerView.setAdapter(mRecipeAdapter);
     }
 
     //going to reuse this to instead let the player know when a recipe is added to favorites
@@ -63,13 +87,28 @@ public class SubjectActivity extends AppCompatActivity
 //        }
 //    }
 
-    private void addSubjectClick() {
-        SubjectDialogFragment dialog = new SubjectDialogFragment();
-        dialog.show(getSupportFragmentManager(), "subjectDialog");
+//        TODO: use this to experiment with adding favorites on the recipe menu instead of within a recipe
+
+    private void addFavorite() {
+//        SubjectDialogFragment dialog = new SubjectDialogFragment();
+//        dialog.show(getSupportFragmentManager(), "subjectDialog");
+    }
+
+    private void openFavorite() {
+        Button btn = (Button)findViewById(R.id.openFavoritesButton);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RecipeActivity.this, FavoriteActivity.class));
+            }
+        });
+
     }
 
     private class SubjectHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
+
 
         private Food mFood;
         private final TextView mSubjectTextView;
@@ -79,6 +118,8 @@ public class SubjectActivity extends AppCompatActivity
             itemView.setOnClickListener(this);
             mSubjectTextView = itemView.findViewById(R.id.subject_text_view);
         }
+
+
 
         public void bind(Food food, int position) {
             mFood = food;
@@ -92,19 +133,19 @@ public class SubjectActivity extends AppCompatActivity
         @Override
         public void onClick(View view) {
             // Start QuestionActivity with the selected subject
-            Intent intent = new Intent(SubjectActivity.this, QuestionActivity.class);
-            intent.putExtra(QuestionActivity.EXTRA_SUBJECT_ID, mFood.getId());
-            intent.putExtra(QuestionActivity.EXTRA_SUBJECT_TEXT, mFood.getText());
+            Intent intent = new Intent(RecipeActivity.this, InstructionActivity.class);
+            intent.putExtra(InstructionActivity.EXTRA_SUBJECT_ID, mFood.getId());
+            intent.putExtra(InstructionActivity.EXTRA_SUBJECT_TEXT, mFood.getText());
 
             startActivity(intent);
         }
     }
 
-    private class SubjectAdapter extends RecyclerView.Adapter<SubjectHolder> {
+    private class RecipeAdapter extends RecyclerView.Adapter<SubjectHolder> {
 
         private final List<Food> mFoodList;
 
-        public SubjectAdapter(List<Food> foods) {
+        public RecipeAdapter(List<Food> foods) {
             mFoodList = foods;
         }
 
@@ -116,7 +157,7 @@ public class SubjectActivity extends AppCompatActivity
         }
 
         @Override
-        public void onBindViewHolder(SubjectHolder holder, int position){
+        public void onBindViewHolder(SubjectHolder holder, int position) {
             holder.bind(mFoodList.get(position), position);
         }
 
@@ -125,4 +166,9 @@ public class SubjectActivity extends AppCompatActivity
             return mFoodList.size();
         }
     }
+
 }
+
+
+
+
