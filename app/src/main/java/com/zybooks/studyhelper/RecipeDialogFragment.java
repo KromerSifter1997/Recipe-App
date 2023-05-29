@@ -43,6 +43,7 @@ public class RecipeDialogFragment extends DialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mListener = (OnSubjectEnteredListener) context;
+
     }
 
     @Override

@@ -2,15 +2,18 @@ package com.zybooks.studyhelper.repo;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.zybooks.studyhelper.R;
 import com.zybooks.studyhelper.model.Favorites;
 import com.zybooks.studyhelper.model.Food;
 import com.zybooks.studyhelper.model.Recipe;
-
+import com.zybooks.studyhelper.RecipeActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,15 +27,38 @@ public class RecipeRepository extends AppCompatActivity {
     private final List<Favorites> mFavoritesList;
     private final HashMap<Long, List<Recipe>> mRecipeList;
 
-    private boolean toggleButtonState;
+    private String favName;
+
+     boolean toggleButtonState;
 
     //Solely exists to pull a check for the favorite star
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_view_items);
+
+        //this saves the current state of the toggle as a true or false
         ToggleButton simpleToggleButton = (ToggleButton) findViewById(R.id.toggleButton); // initiate a toggle button
         toggleButtonState = simpleToggleButton.isChecked();
+
+        //this actually does something when the toggle is clicked in a specific state.
+        simpleToggleButton.setOnClickListener(new View.OnClickListener() {
+
+            //TODO: This isnt working, fix it
+            @Override
+            public void onClick(View arg0) {
+                if(simpleToggleButton.isChecked()){
+//
+                    setFavorites(favName);
+                }
+                else {
+
+
+                }
+            }
+        });
+//        addStarterData();
+
 
     }
 
@@ -56,7 +82,7 @@ public class RecipeRepository extends AppCompatActivity {
 
 
 
-
+    // adds items to list
     private void addStarterData() {
 //        Steps for Spaghetti
         // start subject to create new recipe
@@ -64,15 +90,14 @@ public class RecipeRepository extends AppCompatActivity {
         food.setId(1);
 
 
-
-
         // TODO: create an if that checks whether the star has been toggled
         //The Favorited status won't immediately update, but since it will be called again when you go into the favorites menu this isn't an issue
 
-        if(toggleButtonState == true) {
+        if(toggleButtonState = true) {
 
             Favorites favorites = new Favorites("SPAGHETTI");
             favorites.setFavId(1);
+            addFavorites(favorites);
 
         }
 
@@ -118,6 +143,7 @@ public class RecipeRepository extends AppCompatActivity {
             Favorites favorites = new Favorites("COOKIES");
             favorites.setFavId(1);
 
+
         }
         addRecipe(food);
 
@@ -146,18 +172,24 @@ public class RecipeRepository extends AppCompatActivity {
         recipe.setSubjectId(1);
         addStep(recipe);
 
-
 // ///////////////////////////////////////////////////////////////
 
         //        Steps for pancakes
         food = new Food("PANCAKES");
         food.setId(1);
+
+
         if(toggleButtonState == true) {
 
             Favorites favorites = new Favorites("PANCAKES");
+            favorites.mFavName = "Pancakes";
             favorites.setFavId(1);
 
+            addFavorites(favorites);
+//
         }
+
+
         addRecipe(food);
 
         //recipe new recipe creates individual steps
@@ -188,6 +220,7 @@ public class RecipeRepository extends AppCompatActivity {
 
 // ///////////////////////////////////////////////////////////////
     }
+
 
     public void addRecipe(Food food) {
         mFoodList.add(food);
@@ -218,6 +251,13 @@ public class RecipeRepository extends AppCompatActivity {
         return mFoodList;
     }
 
+
+    public void setFavorites(String favName){
+        Favorites favorites = new Favorites("SPAGHETTI");
+        favorites.setFavId(1);
+        addFavorites(favorites);
+
+    }
     public List<Favorites> getFavorites() {
         return mFavoritesList;
     }

@@ -8,6 +8,8 @@ public class Favorites {
 
         private long mFavId;
         private String mText;
+
+        public String mFavName;
         private long mUpdateTime;
 
         public Favorites(@NonNull String text) {
@@ -36,6 +38,7 @@ public class Favorites {
         public void setText(String subject) {
             mText = subject;
         }
+
 
         public long getUpdateTime() {
             return mUpdateTime;

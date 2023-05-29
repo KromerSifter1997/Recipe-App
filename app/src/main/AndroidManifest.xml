@@ -12,11 +12,13 @@
         android:theme="@style/Theme.StudyHelper"
         tools:targetApi="31">
         <activity
+            android:name=".SearchActivity"
+            android:exported="false"
+            android:parentActivityName=".RecipeActivity"/>
+        <activity
             android:name=".FavoriteActivity"
             android:exported="false"
-            android:parentActivityName=".RecipeActivity"
-            />
-
+            android:parentActivityName=".RecipeActivity" />
         <activity
             android:name=".RecipeActivity"
             android:exported="true"

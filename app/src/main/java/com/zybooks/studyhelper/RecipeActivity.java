@@ -60,18 +60,31 @@ public class RecipeActivity extends AppCompatActivity
         FloatingActionButton fBtn = (FloatingActionButton) findViewById(R.id.openFavoritesButton);
         fBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //do this to check if changes save when reloading ui
+//                updateUI(mRecipeListViewModel.getRecipes());
                 startActivity(new Intent(RecipeActivity.this, FavoriteActivity.class));
             }
+
         });
 
 
+        FloatingActionButton sBtn = (FloatingActionButton) findViewById(R.id.searchButton);
+        sBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //do this to check if changes save when reloading ui
+//                updateUI(mRecipeListViewModel.getRecipes());
+                startActivity(new Intent(RecipeActivity.this, SearchActivity.class));
+            }
 
+        });
 
     }
 
-    private void updateUI(List<Food> foodList) {
+
+    public void updateUI(List<Food> foodList) {
         mRecipeAdapter = new RecipeAdapter(foodList);
         mRecyclerView.setAdapter(mRecipeAdapter);
+
     }
 
     //going to reuse this to instead let the player know when a recipe is added to favorites
@@ -83,7 +96,7 @@ public class RecipeActivity extends AppCompatActivity
 //
 //            updateUI(mSubjectListViewModel.getSubjects());
 //
-//            Toast.makeText(this, "Added " + subjectText + "to favorites", Toast.LENGTH_SHORT).show();
+//
 //        }
 //    }
 
