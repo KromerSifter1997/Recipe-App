@@ -13,6 +13,8 @@ public class RecipeRepository {
 
     private static RecipeRepository mRecipeRepo;
     private final List<Food> mFoodList;
+
+    private final List<Food> mFavList;
     private final HashMap<Long, List<Recipe>> mRecipeList;
 
     public static RecipeRepository getInstance(Context context) {
@@ -25,6 +27,7 @@ public class RecipeRepository {
     private RecipeRepository(Context context) {
 
         mFoodList = new ArrayList<>();
+        mFavList = new ArrayList<>();
         mRecipeList = new HashMap<>();
 
         addStarterData();
@@ -35,6 +38,7 @@ public class RecipeRepository {
         // start subject to create new recipe
         Food food = new Food("SPAGHETTI");
         food.setId(1);
+        food.setFavId(0);
         addRecipe(food);
 
         //recipe new recipe creates individual steps
@@ -70,6 +74,7 @@ public class RecipeRepository {
         //after just do subject = new subject()
         food = new Food("COOKIES");
         food.setId(1);
+        food.setFavId(0);
         addRecipe(food);
 
         //recipe new recipe creates individual steps
@@ -103,6 +108,7 @@ public class RecipeRepository {
         //        Steps for pancakes
         food = new Food("PANCAKES");
         food.setId(1);
+        food.setFavId(0);
         addRecipe(food);
 
         //recipe new recipe creates individual steps

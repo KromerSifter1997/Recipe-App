@@ -13,15 +13,27 @@
         android:scrollbars="vertical" />
 
 
-<!--    will be converted into the open favorites button-->
+<!--    TODO: convert into a button that opens favorites-->
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/add_subject_button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:contentDescription="@string/favoriteRecipes"-->
-<!--        android:layout_gravity="end|bottom"-->
-<!--        android:src="@drawable/favorites"-->
-<!--        android:layout_margin="16dp" />-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/openFavoritesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/favoriteRecipes"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/favorites"
+        android:layout_margin="16dp" />
+
+<!--    TODO: Create button that opens search-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:layout_toEndOf="@+id/favoriteButton"
+        android:contentDescription="@string/favoriteRecipes"
+        android:src="@drawable/searchicon" />
 
 </FrameLayout>
