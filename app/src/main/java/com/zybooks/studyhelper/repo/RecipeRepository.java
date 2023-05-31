@@ -3,17 +3,14 @@ package com.zybooks.studyhelper.repo;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.zybooks.studyhelper.R;
 import com.zybooks.studyhelper.model.Favorites;
 import com.zybooks.studyhelper.model.Food;
 import com.zybooks.studyhelper.model.Recipe;
-import com.zybooks.studyhelper.RecipeActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +26,7 @@ public class RecipeRepository extends AppCompatActivity {
 
     private String favName;
 
-     boolean toggleButtonState;
+     private boolean toggleButtonState;
 
     //Solely exists to pull a check for the favorite star
     @Override
@@ -39,25 +36,45 @@ public class RecipeRepository extends AppCompatActivity {
 
         //this saves the current state of the toggle as a true or false
         ToggleButton simpleToggleButton = (ToggleButton) findViewById(R.id.toggleButton); // initiate a toggle button
-        toggleButtonState = simpleToggleButton.isChecked();
 
-        //this actually does something when the toggle is clicked in a specific state.
-        simpleToggleButton.setOnClickListener(new View.OnClickListener() {
+        ToggleButton btn = (ToggleButton) findViewById(R.id.toggleButton);
+//        toggleButtonState = simpleToggleButton.isChecked();
 
-            //TODO: This isnt working, fix it
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
-                if(simpleToggleButton.isChecked()){
-//
-                    setFavorites(favName);
-                }
-                else {
+            public void onClick(View v) {
+                addStarterData();
 
-
-                }
             }
         });
+        ///////////////////////////////////////////////////////////////
+
+//        simpleToggleButton.setOnClickListener(new View.OnClickListener() {
+//
+//            //TODO: This isnt working, fix it
+//            @Override
+//            public void onClick(View arg0) {
+//                if(simpleToggleButton.isChecked()){
+////
+////                    setFavorites(favName);
+//                }
+//                else {
+//
+//
+//                }
+//            }
+//        });
+//// //////////////////////////////////////////////////////////////////////////////////////////
+
+        //this actually does something when the toggle is clicked in a specific state.
+//
+
+
+
+
 //        addStarterData();
+
+
 
 
     }
@@ -228,7 +245,7 @@ public class RecipeRepository extends AppCompatActivity {
         mRecipeList.put(food.getId(), recipeList);
     }
 
-    //calls favorites, similar to how items are called normally
+    //calls favorites, similar to how items are called normally via addStep
     public void addFavorites(Favorites favorites) {
         //  REMINDER: If this doesn't play nice, nest in an if statement to make it skip.
 
@@ -237,7 +254,7 @@ public class RecipeRepository extends AppCompatActivity {
         mRecipeList.put(favorites.getFavId(), FavoritesList);
     }
 
-    public Food getSubject(long subjectId) {
+    public Food getRecipe(long subjectId) {
         for (Food food : mFoodList) {
             if (food.getId() == subjectId) {
                 return food;
@@ -258,12 +275,14 @@ public class RecipeRepository extends AppCompatActivity {
         addFavorites(favorites);
 
     }
+
+    //same logic as List food
     public List<Favorites> getFavorites() {
         return mFavoritesList;
     }
 
     public void addStep(Recipe recipe) {
-        // this function can be applied to call upon "favorite recipe" by giving it a "favorite id" instead to call upon
+
         List<Recipe> recipeList = mRecipeList.get(recipe.getRecipeId());
         if (recipeList != null) {
             recipeList.add(recipe);

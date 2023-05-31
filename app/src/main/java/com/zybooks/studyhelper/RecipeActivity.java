@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.zybooks.studyhelper.model.Food;
 import com.zybooks.studyhelper.viewmodel.RecipeListViewModel;
@@ -28,6 +29,8 @@ public class RecipeActivity extends AppCompatActivity
     private RecyclerView mRecyclerView;
     private int[] mSubjectColors;
     private RecipeListViewModel mRecipeListViewModel;
+
+    boolean toggleButtonState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,9 @@ public class RecipeActivity extends AppCompatActivity
 
 
 
-        // Show the subjects
+
+
+            // Show the subjects
         updateUI(mRecipeListViewModel.getRecipes());
 
         //due to the unique FAB button, had to implement a slightly unusual form of click listener
@@ -78,7 +83,9 @@ public class RecipeActivity extends AppCompatActivity
 
         });
 
+
     }
+
 
 
     public void updateUI(List<Food> foodList) {
